@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Article } from './article.model';
 
 @Component({
@@ -11,11 +11,14 @@ import { Article } from './article.model';
 })
 export class ArticleComponent implements OnInit {
   @Input() article: Article;
+  @Output() demo = new EventEmitter();
 
   constructor() {
   }
 
   ngOnInit() {
+    this.demo.emit(this.article);
+    console.log(this.article);
   }
 
   voteUp(): boolean {
