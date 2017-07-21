@@ -31,6 +31,6 @@ export class AppComponent {
   }
 
   testDemo(article: Article): void {
-    console.log('article', article);
+    // console.log('article', article);
   }
 }

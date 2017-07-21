@@ -1,0 +1,38 @@
+<div class="ui raised segment">
+  <h2 class="ui header">ngForm</h2>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="ui form">
+    <div class="field">
+      <label for="skuInput">SKU</label>
+      <input type="text" id="skuInput" placeholder="SKU" name="sku" ngModel>
+    </div>
+    <div class="field">
+      <label for="descriptionInput">DESCRIPTION</label>
+      <input type="text" id="descriptionInput" placeholder="DESCRIPTION" name="description" ngModel>
+    </div>
+    <button type="submit" class="ui button">Submit</button>
+  </form>
+</div>
+
+<div class="ui raised segment">
+  <h2 class="ui header">formGroup</h2>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="ui form">
+    <div class="field" [class.error]="!sku.valid && sku.touched">
+      <label for="skuInput">SKU</label>
+      <input type="text" id="skuInput" placeholder="SKU" [formControl]="myForm.controls['sku']">
+      <div *ngIf="!sku.valid" class="error">SKU is invalid</div>
+      <div *ngIf="sku.hasError('required')" class="error">SKU is required</div>
+      <div *ngIf="sku.hasError('invalidSku')" class="error">SKU must begin with <span>123</span></div>
+    </div>
+    <div class="field">
+      <label for="descriptionInput">DESCRIPTION</label>
+      <input type="text" id="descriptionInput" placeholder="DESCRIPTION" [formControl]="myForm.controls['description']">
+    </div>
+    <div class="ui info message">The product name is: {{productName}}</div>
+    <div class="field">
+      <label for="productName">Product name</label>
+      <input type="text" id="productName" placeholder="PRODUCT NAME" [formControl]="myForm.get('productName')" [(ngModel)]='productName'>
+    </div>
+    <div *ngIf="myForm.hasError('required', 'sku')" class="error">SKU is required</div>
+    <button type="submit" class="ui button">Submit</button>
+  </form>
+</div>

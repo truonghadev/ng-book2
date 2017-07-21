@@ -18,7 +18,7 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit() {
     this.demo.emit(this.article);
-    console.log(this.article);
+    // console.log(this.article);
   }
 
   voteUp(): boolean {
